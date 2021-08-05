@@ -53,7 +53,7 @@ describe('demo routes', () => {
       userId: '1',
       name: 'Rick Sanchez',
       status: 'Alive',
-      location: '{"name":"Earth (Replacement Dimension)","url":"https://rickandmortyapi.com/api/location/20"}',        
+      location: { name:'Earth (Replacement Dimension)', url:'https://rickandmortyapi.com/api/location/20' },        
       image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
     });
   });
