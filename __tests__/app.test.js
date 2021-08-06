@@ -9,6 +9,8 @@ describe('demo routes', () => {
     password: 'password'
   };
 
+  let rick;
+
   beforeAll(() => {
     return setup(pool)
       .then(() => request(app).post('/api/auth/signup').send(user))
@@ -56,10 +58,11 @@ describe('demo routes', () => {
       location: { name:'Earth (Replacement Dimension)', url:'https://rickandmortyapi.com/api/location/20' },        
       image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
     });
+
+    rick = body;
   });
 
   it('gets all of a user\'s favorite characters', async () => {
-    console.log(user.userId);
     const { body } = await request(app)
       .get(`/characters/user/${user.userId}`);
 
@@ -71,5 +74,21 @@ describe('demo routes', () => {
       location: { name:'Earth (Replacement Dimension)', url:'https://rickandmortyapi.com/api/location/20' },        
       image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
     }]));
+  });
+
+  it('updates aspects of the user\'s character', async () => {
+   
+  });
+
+  it('deletes a user\'s favorite character', async () => {
+    const { body } = await request(app)
+      .delete(`/characters/user/${rick.characterId}/${user.userId}`);
+
+    expect(body).toEqual(rick);
+
+    const getReq = await request(app)
+      .get(`/characters/user/${user.userId}`);
+
+    expect(getReq.body).toEqual([]);
   });
 });
