@@ -77,7 +77,12 @@ describe('demo routes', () => {
   });
 
   it('updates aspects of the user\'s character', async () => {
-   
+    rick.status = 'Dead';
+    const { body } = await request(app)
+      .put(`/characters/user/${rick.characterId}/${user.userId}`)
+      .send(rick);
+
+    expect(body).toEqual(rick);
   });
 
   it('deletes a user\'s favorite character', async () => {
