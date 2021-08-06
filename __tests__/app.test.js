@@ -57,4 +57,18 @@ describe('demo routes', () => {
       image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
     });
   });
+
+  it('gets all of a user\'s favorite characters', async () => {
+    const { body } = await request(app)
+      .get('/characters/user');
+
+    expect(body).toEqual(expect.arrayContaining([{
+      characterId: 1,
+      userId: '1',
+      name: 'Rick Sanchez',
+      status: 'Alive',
+      location: { name:'Earth (Replacement Dimension)', url:'https://rickandmortyapi.com/api/location/20' },        
+      image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
+    }]));
+  });
 });

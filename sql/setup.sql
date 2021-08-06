@@ -12,4 +12,4 @@ CREATE TABLE characters (
   status TEXT NOT NULL,
   location JSON NOT NULL,
   image TEXT NOT NULL
-)
+);
