@@ -59,8 +59,9 @@ describe('demo routes', () => {
   });
 
   it('gets all of a user\'s favorite characters', async () => {
+    console.log(user.userId);
     const { body } = await request(app)
-      .get('/characters/user');
+      .get(`/characters/user/${user.userId}`);
 
     expect(body).toEqual(expect.arrayContaining([{
       characterId: 1,
